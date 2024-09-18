@@ -106,7 +106,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                       ),
                                       minWidth: size.width * 0.3,
                                       height: size.height * 0.055,
-                                      color: Color(0xff1A434E),
+                                      color: const Color(0xff1A434E),
                                       onPressed: () {
                                         Navigator.push(
                                             context,
@@ -147,7 +147,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8),
                                       color: index == indexDots
-                                          ? Color(0xff1A434E)
+                                          ? const Color(0xff1A434E)
                                           : const Color.fromARGB(
                                               255, 193, 170, 255),
                                     ),
