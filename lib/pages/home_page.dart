@@ -186,7 +186,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   width: size.width * 0.16,
                                   height: size.height * 0.07,
                                   decoration: BoxDecoration(
-                                    color: Color(0xff1A434E).withOpacity(0.2),
+                                    color: const Color(0xff1A434E)
+                                        .withOpacity(0.2),
                                     borderRadius: BorderRadius.circular(50),
                                   ),
                                   child: Padding(

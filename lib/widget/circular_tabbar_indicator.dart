@@ -16,12 +16,12 @@ class _CirclePainter extends BoxPainter {
   _CirclePainter({required this.color, required this.radius});
   @override
   void paint(Canvas canvas, Offset offset, ImageConfiguration configuration) {
-    Paint _paint = Paint();
-    _paint.color = color;
-    _paint.isAntiAlias = true;
+    Paint paint = Paint();
+    paint.color = color;
+    paint.isAntiAlias = true;
     final Offset circleOffset = Offset(
         configuration.size!.width / 2 - radius / 2,
         configuration.size!.height - radius / 2);
-    canvas.drawCircle(offset + circleOffset, radius, _paint);
+    canvas.drawCircle(offset + circleOffset, radius, paint);
   }
 }
