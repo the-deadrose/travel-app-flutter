@@ -2,7 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:travel_app_flutter/model/people_like_model.dart';
 import 'package:travel_app_flutter/model/tabbar_model.dart';
-import 'package:travel_app_flutter/widget/reusable_text.dart';
+import 'package:travel_app_flutter/core/widgets/reusable_text.dart';
 
 class DetailsPage extends StatefulWidget {
   const DetailsPage({
@@ -255,7 +255,8 @@ class _DetailsPageState extends State<DetailsPage> {
                                   height: size.height * 0.06,
                                   decoration: BoxDecoration(
                                       border: Border.all(
-                                          color: Color(0xff1A434E), width: 2),
+                                          color: const Color(0xff1A434E),
+                                          width: 2),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: IconButton(
                                     onPressed: () {},

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shape_of_view_null_safe/shape_of_view_null_safe.dart';
 import 'package:travel_app_flutter/model/welcome_model.dart';
 import 'package:travel_app_flutter/pages/nav_page/main_wrapper.dart';
-import 'package:travel_app_flutter/widget/reusable_text.dart';
+import 'package:travel_app_flutter/core/widgets/reusable_text.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
