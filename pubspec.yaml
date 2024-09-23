@@ -38,6 +38,13 @@ dependencies:
   shape_of_view_null_safe: ^3.0.0
   water_drop_nav_bar: ^2.2.2
   google_fonts: ^6.2.1
+  bloc: ^8.1.2
+  flutter_bloc: ^8.1.3
+  dio: ^5.7.0
+  logger: ^2.4.0
+  get_it: ^7.7.0
+  fpdart: ^1.1.0
+  equatable: ^2.0.5
 
 dev_dependencies:
   flutter_test:

@@ -6,9 +6,9 @@ import 'package:travel_app_flutter/model/people_like_model.dart';
 import 'package:travel_app_flutter/model/tabbar_model.dart';
 import 'package:travel_app_flutter/pages/detail_page.dart';
 import 'package:travel_app_flutter/pages/nav_page/main_wrapper.dart';
-import 'package:travel_app_flutter/widget/circular_tabbar_indicator.dart';
-import 'package:travel_app_flutter/widget/middle_app_text.dart';
-import 'package:travel_app_flutter/widget/reusable_text.dart';
+import 'package:travel_app_flutter/features/home/presentation/widgets/circular_tabbar_indicator.dart';
+import 'package:travel_app_flutter/features/home/presentation/widgets/middle_app_text.dart';
+import 'package:travel_app_flutter/core/widgets/reusable_text.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

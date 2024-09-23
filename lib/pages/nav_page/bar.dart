@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:travel_app_flutter/widget/reusable_text.dart';
+import 'package:travel_app_flutter/core/widgets/reusable_text.dart';
 
 class Bar extends StatelessWidget {
   const Bar({super.key});
