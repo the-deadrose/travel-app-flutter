@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:travel_app_flutter/core/errors/failure.dart';
 import 'package:travel_app_flutter/core/usecases/usecase.dart';
