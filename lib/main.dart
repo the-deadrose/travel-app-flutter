@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-
-import '../pages/welcome_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travel_app_flutter/config/injector/injector_config.dart';
+import 'package:travel_app_flutter/features/welcome/presentation/bloc/welcome_bloc.dart';
+import 'package:travel_app_flutter/features/welcome/presentation/page/welcome_page.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  configureDepedencies();
   runApp(const MyApp());
 }
 
@@ -11,9 +15,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-        title: 'Flutter Travel App',
-        debugShowCheckedModeBanner: false,
-        home: WelcomePage());
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<WelcomeBloc>(
+          create: (_) => getIt<WelcomeBloc>(),
+        ),
+      ],
+      child: const MaterialApp(
+          title: 'Flutter Travel App',
+          debugShowCheckedModeBanner: false,
+          home: WelcomePage()),
+    );
   }
 }

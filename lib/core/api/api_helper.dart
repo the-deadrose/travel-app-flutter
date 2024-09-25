@@ -18,6 +18,8 @@ class ApiHelper {
       switch (method) {
         case Method.get:
           response = await _dio.get(url);
+          print('response is $response');
+          print('response type is ${response.runtimeType}');
           break;
         case Method.post:
           response = await _dio.post(url);

@@ -26,9 +26,5 @@ class HomeDepedency {
     getIt.registerLazySingleton(() => HomeRemoteDatasourceImpl(
           getIt<ApiHelper>(),
         ));
-
-    getIt.registerLazySingleton(() => HomeRemoteDatasourceImpl(
-          getIt<ApiHelper>(),
-        ));
   }
 }
