@@ -23,19 +23,6 @@ class WelcomeRemoteDatasourceImpl implements WelcomeRemoteDatasource {
       print('response is $response');
 
       return WelcomeModel.fromJson(response);
-
-      // if (response == 200) {
-      //   print('response');
-      // final WelcomeModel welcomeList = [];
-      // response['data'].forEach((v) {
-      //   welcomeList.add(WelcomeModel.fromJson(v));
-      // });
-      // return welcomeList;
-
-      // return response as WelcomeModel;
-      // } else {
-      //   throw FetchDataException(response['message']);
-      // }
     } catch (e) {
       print('errorrr');
       print('errrrrrrrrrrrrrrrrrrrrrr $e');

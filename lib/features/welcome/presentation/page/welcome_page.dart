@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:shape_of_view_null_safe/shape_of_view_null_safe.dart';
 import 'package:travel_app_flutter/core/api/api_url.dart';
 import 'package:travel_app_flutter/features/welcome/presentation/bloc/welcome_bloc.dart';
@@ -45,8 +46,46 @@ class _WelcomePageState extends State<WelcomePage> {
                 child: CircularProgressIndicator(),
               );
             } else if (state is WelcomeError) {
-              return const Center(
-                child: Text("Error"),
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(
+                    child: Lottie.asset(
+                      'assets/animations/error.json',
+                      height: size.height * 0.2,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Center(
+                    child: AppText(
+                      text: state.message,
+                      size: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+
+                  const SizedBox(height: 20),
+                  // retry button
+                  MaterialButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    minWidth: size.width * 0.3,
+                    height: size.height * 0.055,
+                    color: const Color(0xff1A434E),
+                    onPressed: () {
+                      BlocProvider.of<WelcomeBloc>(context)
+                          .add(GetWelcomeData());
+                    },
+                    child: const AppText(
+                      text: "Retry",
+                      size: 16,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                ],
               );
             } else if (state is WelcomeLoaded) {
               final welcomeComponents = state.welcomeModel;
