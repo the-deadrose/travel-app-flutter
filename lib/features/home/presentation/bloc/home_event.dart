@@ -8,6 +8,6 @@ sealed class HomeEvent extends Equatable {
   List<Object> get props => [];
 }
 
-final class GetHomePageData extends HomeEvent {
-  const GetHomePageData();
-}
+final class GetHomePageData extends HomeEvent {}
+
+final class GetInspirationData extends HomeEvent {}
