@@ -18,3 +18,17 @@ final class HomeError extends HomeState {
 
   HomeError(this.message);
 }
+
+final class InspirationLoading extends HomeState {}
+
+final class InspirationLoaded extends HomeState {
+  final InspirationModel inspirationModel;
+
+  InspirationLoaded(this.inspirationModel);
+}
+
+final class InspirationError extends HomeState {
+  final String message;
+
+  InspirationError(this.message);
+}

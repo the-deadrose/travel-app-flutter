@@ -1,18 +1,18 @@
-class DestinationModel {
+class InspirationModel {
   int? count;
   dynamic next;
   dynamic previous;
   List<Result>? results;
 
-  DestinationModel({
+  InspirationModel({
     this.count,
     this.next,
     this.previous,
     this.results,
   });
 
-  factory DestinationModel.fromJson(Map<String, dynamic> json) =>
-      DestinationModel(
+  factory InspirationModel.fromJson(Map<String, dynamic> json) =>
+      InspirationModel(
         count: json["count"],
         next: json["next"],
         previous: json["previous"],

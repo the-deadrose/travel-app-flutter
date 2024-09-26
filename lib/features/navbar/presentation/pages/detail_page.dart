@@ -1,18 +1,18 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:travel_app_flutter/features/home/data/model/destination_model.dart';
 import 'package:travel_app_flutter/model/people_like_model.dart';
-import 'package:travel_app_flutter/model/tabbar_model.dart';
 import 'package:travel_app_flutter/core/widgets/reusable_text.dart';
 
 class DetailsPage extends StatefulWidget {
   const DetailsPage({
     super.key,
-    required this.tabData,
+    required this.destination,
     required this.personData,
     required this.isCameFromPersonSection,
   });
 
-  final TabBarModel? tabData;
+  final DestinationModel? destination;
   final PeopleAlsoLikeModel? personData;
   final bool isCameFromPersonSection;
 
@@ -27,10 +27,10 @@ class _DetailsPageState extends State<DetailsPage> {
   dynamic current;
 
   onFirstLoaded() {
-    if (widget.tabData == null) {
+    if (widget.destination == null) {
       return current = widget.personData;
     } else {
-      return current = widget.tabData;
+      return current = widget.destination;
     }
   }
 
