@@ -5,7 +5,7 @@ import 'package:lottie/lottie.dart';
 import 'package:shape_of_view_null_safe/shape_of_view_null_safe.dart';
 import 'package:travel_app_flutter/core/api/api_url.dart';
 import 'package:travel_app_flutter/features/welcome/presentation/bloc/welcome_bloc.dart';
-import 'package:travel_app_flutter/pages/nav_page/main_wrapper.dart';
+import 'package:travel_app_flutter/features/navbar/presentation/pages/main_wrapper.dart';
 import 'package:travel_app_flutter/core/widgets/reusable_text.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
