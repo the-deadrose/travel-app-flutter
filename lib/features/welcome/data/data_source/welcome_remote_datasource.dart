@@ -9,7 +9,7 @@ sealed class WelcomeRemoteDatasource {
 }
 
 class WelcomeRemoteDatasourceImpl implements WelcomeRemoteDatasource {
-  final url = '${ApiUrl.baseUrl}welcome-destinations/';
+  final url = '${ApiUrl.baseUrl}destination/welcome/';
   final ApiHelper _apiHelper;
 
   WelcomeRemoteDatasourceImpl(this._apiHelper);
