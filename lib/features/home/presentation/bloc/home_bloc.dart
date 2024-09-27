@@ -5,8 +5,10 @@ import 'package:travel_app_flutter/core/usecases/usecase.dart';
 import 'package:travel_app_flutter/core/utils/failure_convertor.dart';
 import 'package:travel_app_flutter/features/home/data/model/destination_model.dart';
 import 'package:travel_app_flutter/features/home/data/model/inspiration_model.dart';
+import 'package:travel_app_flutter/features/home/data/model/popular_model.dart';
 import 'package:travel_app_flutter/features/home/domain/usecases/get_destination_data.dart';
 import 'package:travel_app_flutter/features/home/domain/usecases/get_inspiration_data.dart';
+import 'package:travel_app_flutter/features/home/domain/usecases/get_popular_data.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
@@ -14,24 +16,34 @@ part 'home_state.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetDestinationDataUseCase getDestinationDataUseCase;
   final GetInspirationDataUseCase getInspirationDataUseCase;
+  final GetPopularDataUseCase getPopularDataUseCase;
 
   HomeBloc(
       {required this.getDestinationDataUseCase,
-      required this.getInspirationDataUseCase})
+      required this.getInspirationDataUseCase,
+      required this.getPopularDataUseCase})
       : super(HomeInitial()) {
     on<GetHomePageData>((event, emit) async {
       emit(HomeLoading());
 
       final destination = await getDestinationDataUseCase();
       final inspiration = await getInspirationDataUseCase();
+      final popular = await getPopularDataUseCase();
       destination.fold(
         (failure) =>
             emit(const HomeError(message: 'failed to load destination data')),
         (destination) => inspiration.fold(
             (failure) => emit(
                 const HomeError(message: 'failed to load inspiration data')),
-            (inspiration) => emit(HomeLoaded(
-                destinationModel: destination, inspirationModel: inspiration))),
+            (inspiration) => popular.fold(
+                  (failure) => emit(
+                      const HomeError(message: 'failed to load popular data')),
+                  (popular) => emit(HomeLoaded(
+                    destinationModel: destination,
+                    inspirationModel: inspiration,
+                    popularModel: popular,
+                  )),
+                )),
       );
     });
   }

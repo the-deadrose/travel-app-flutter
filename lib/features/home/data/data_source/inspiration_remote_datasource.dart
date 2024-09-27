@@ -8,7 +8,7 @@ abstract class InspirationRemoteDatasource {
 }
 
 class InspirationRemoteDatasourceImpl implements InspirationRemoteDatasource {
-  final url = '${ApiUrl.baseUrl}destination/popular/';
+  final url = '${ApiUrl.baseUrl}destination/inspiration/';
   final ApiHelper _apiHelper;
 
   InspirationRemoteDatasourceImpl(this._apiHelper);
