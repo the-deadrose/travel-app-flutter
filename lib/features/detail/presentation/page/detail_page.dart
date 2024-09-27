@@ -261,9 +261,8 @@ class _DetailsPageState extends State<DetailsPage> {
                             SizedBox(height: size.height * 0.01),
                             FadeInUp(
                               delay: const Duration(milliseconds: 900),
-                              child: const AppText(
-                                text:
-                                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                              child: AppText(
+                                text: detail.description,
                                 size: 13,
                                 color: Colors.black54,
                                 fontWeight: FontWeight.w300,

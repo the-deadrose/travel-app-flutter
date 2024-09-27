@@ -23,6 +23,7 @@ class AppText extends StatelessWidget {
         color: color,
         fontWeight: fontWeight,
       ),
+      overflow: TextOverflow.ellipsis,
     );
   }
 }
