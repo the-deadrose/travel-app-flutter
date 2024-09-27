@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:travel_app_flutter/core/api/api_url.dart';
 import 'package:travel_app_flutter/features/home/data/model/destination_model.dart';
+import 'package:travel_app_flutter/features/home/data/model/inspiration_model.dart';
 import 'package:travel_app_flutter/features/home/presentation/bloc/home_bloc.dart';
 import 'package:travel_app_flutter/model/category_model.dart';
 import 'package:travel_app_flutter/model/people_like_model.dart';
@@ -29,7 +30,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   void initState() {
     tabController = TabController(length: 3, vsync: this);
     context.read<HomeBloc>().add(GetHomePageData());
-    context.read<HomeBloc>().add(GetInspirationData());
     super.initState();
   }
 
@@ -170,11 +170,17 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 controller: tabController,
                                 children: [
                                   TabViewChild(
-                                      destination: state.destinationModel),
+                                      destination: state.destinationModel,
+                                      inspiration: state.inspirationModel,
+                                      type: 'Destination'),
                                   TabViewChild(
-                                      destination: state.destinationModel),
+                                      destination: state.destinationModel,
+                                      inspiration: state.inspirationModel,
+                                      type: 'Inspiration'),
                                   TabViewChild(
-                                      destination: state.destinationModel),
+                                      destination: state.destinationModel,
+                                      inspiration: state.inspirationModel,
+                                      type: 'Popular'),
                                 ]),
                           );
                         }
@@ -377,20 +383,32 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 class TabViewChild extends StatelessWidget {
   const TabViewChild({
     required this.destination,
+    required this.inspiration,
+    required this.type,
     super.key,
   });
 
   final DestinationModel destination;
+  final InspirationModel inspiration;
+  final String type;
 
   @override
   Widget build(BuildContext context) {
+    print(type);
+    print(type == 'Destination'
+        ? destination.results.first.name
+        : inspiration.results?.first.name);
     var size = MediaQuery.of(context).size;
     return ListView.builder(
-      itemCount: destination.results?.length,
+      itemCount: type == 'Destiination'
+          ? destination.results.length
+          : inspiration.results!.length,
       physics: const BouncingScrollPhysics(),
       scrollDirection: Axis.horizontal,
       itemBuilder: (context, index) {
-        final current = destination.results![index];
+        // final current = destination.results[index];
+        final destinationData = destination.results[index];
+        final inspirationData = inspiration.results?[index];
         return GestureDetector(
           onTap: () => Navigator.push(
             context,
@@ -406,7 +424,9 @@ class TabViewChild extends StatelessWidget {
             alignment: Alignment.bottomLeft,
             children: [
               Hero(
-                tag: current.images![0].toString(),
+                tag: type == 'Destination'
+                    ? destinationData.images[0].toString()
+                    : inspirationData!.images![0].toString(),
                 child: Container(
                   margin: const EdgeInsets.all(10.0),
                   width: size.width * 0.6,
@@ -414,7 +434,7 @@ class TabViewChild extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15),
                     image: DecorationImage(
                       image: NetworkImage(
-                          '${ApiUrl.mediaUrl}${current.images![0]}'),
+                          '${ApiUrl.mediaUrl}${type == 'Destination' ? destinationData.images[0] : inspirationData!.images![0]}'),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -448,7 +468,9 @@ class TabViewChild extends StatelessWidget {
                 left: size.width * 0.07,
                 bottom: size.height * 0.045,
                 child: AppText(
-                  text: current.name ?? "",
+                  text: type == 'Destination'
+                      ? destinationData.name
+                      : inspirationData!.name ?? "",
                   size: 15,
                   color: Colors.white,
                   fontWeight: FontWeight.w400,
@@ -468,7 +490,9 @@ class TabViewChild extends StatelessWidget {
                       width: size.width * 0.01,
                     ),
                     AppText(
-                      text: current.location ?? "",
+                      text: type == 'Destination'
+                          ? destinationData.location
+                          : inspirationData!.location ?? "",
                       size: 12,
                       color: Colors.white,
                       fontWeight: FontWeight.w400,

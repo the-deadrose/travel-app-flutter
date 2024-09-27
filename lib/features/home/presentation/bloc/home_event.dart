@@ -9,5 +9,3 @@ sealed class HomeEvent extends Equatable {
 }
 
 final class GetHomePageData extends HomeEvent {}
-
-final class GetInspirationData extends HomeEvent {}
