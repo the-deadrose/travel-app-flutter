@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travel_app_flutter/config/injector/injector_config.dart';
+import 'package:travel_app_flutter/features/detail/presentation/bloc/detail_bloc.dart';
 import 'package:travel_app_flutter/features/home/data/repositories/home_repository_impl.dart';
 import 'package:travel_app_flutter/features/home/domain/usecases/get_destination_data.dart';
 import 'package:travel_app_flutter/features/home/domain/usecases/get_inspiration_data.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
           create: (_) => getIt<WelcomeBloc>(),
         ),
         BlocProvider(create: (_) => getIt<HomeBloc>()),
+        BlocProvider(create: (_) => getIt<DetailBloc>())
       ],
       child: const MaterialApp(
           title: 'Flutter Travel App',
