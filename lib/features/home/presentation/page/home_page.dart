@@ -2,13 +2,14 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:travel_app_flutter/core/api/api_url.dart';
+import 'package:travel_app_flutter/features/detail/presentation/bloc/detail_bloc.dart';
 import 'package:travel_app_flutter/features/home/data/model/destination_model.dart';
 import 'package:travel_app_flutter/features/home/data/model/inspiration_model.dart';
 import 'package:travel_app_flutter/features/home/data/model/popular_model.dart';
 import 'package:travel_app_flutter/features/home/presentation/bloc/home_bloc.dart';
 import 'package:travel_app_flutter/model/category_model.dart';
 import 'package:travel_app_flutter/model/people_like_model.dart';
-import 'package:travel_app_flutter/features/navbar/presentation/pages/detail_page.dart';
+import 'package:travel_app_flutter/features/detail/presentation/page/detail_page.dart';
 import 'package:travel_app_flutter/features/navbar/presentation/pages/main_wrapper.dart';
 import 'package:travel_app_flutter/features/home/presentation/widgets/circular_tabbar_indicator.dart';
 import 'package:travel_app_flutter/features/home/presentation/widgets/middle_app_text.dart';
@@ -265,7 +266,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   MaterialPageRoute(
                                     builder: (context) => DetailsPage(
                                       personData: current,
-                                      destination: null,
                                       isCameFromPersonSection: true,
                                     ),
                                   ),
@@ -428,16 +428,23 @@ class TabViewChild extends StatelessWidget {
         final inspirationData = inspiration.results?[index];
         final popularData = popular.results[index];
         return GestureDetector(
-          onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => DetailsPage(
-                personData: null,
-                destination: destination,
-                isCameFromPersonSection: false,
+          onTap: () async {
+            context.read<DetailBloc>().add(GetDetailData(
+                id: type == 'Destination'
+                    ? destinationData.id
+                    : type == 'Inspiration'
+                        ? inspirationData?.id ?? 0
+                        : popularData.id));
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const DetailsPage(
+                  personData: null,
+                  isCameFromPersonSection: false,
+                ),
               ),
-            ),
-          ),
+            );
+          },
           child: Stack(
             alignment: Alignment.bottomLeft,
             children: [
