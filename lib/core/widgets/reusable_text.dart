@@ -16,13 +16,18 @@ class AppText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: GoogleFonts.ubuntu(
-        fontSize: size,
-        color: color,
-        fontWeight: fontWeight,
-      ),
+    return Column(
+      children: [
+        Text(
+          text,
+          style: GoogleFonts.ubuntu(
+            fontSize: size,
+            color: color,
+            fontWeight: fontWeight,
+          ),
+          overflow: TextOverflow.ellipsis,
+        ),
+      ],
     );
   }
 }
