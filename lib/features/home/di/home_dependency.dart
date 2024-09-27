@@ -1,8 +1,9 @@
 import 'package:travel_app_flutter/config/injector/injector_config.dart';
 import 'package:travel_app_flutter/core/api/api_helper.dart';
-import 'package:travel_app_flutter/features/home/data/data_source/home_remote_datasource.dart';
+import 'package:travel_app_flutter/features/home/data/data_source/destination_remote_datasource.dart';
+import 'package:travel_app_flutter/features/home/data/data_source/inspiration_remote_datasource.dart';
 import 'package:travel_app_flutter/features/home/data/repositories/home_repository_impl.dart';
-import 'package:travel_app_flutter/features/home/domain/usecases/get_home_data.dart';
+import 'package:travel_app_flutter/features/home/domain/usecases/get_destination_data.dart';
 import 'package:travel_app_flutter/features/home/domain/usecases/get_inspiration_data.dart';
 import 'package:travel_app_flutter/features/home/presentation/bloc/home_bloc.dart';
 
@@ -12,12 +13,12 @@ class HomeDepedency {
   static void init() {
     getIt.registerLazySingleton(
       () => HomeBloc(
-        getIt<GetHomeDataUseCase>(),
-        getIt<GetInspirationDataUseCase>(),
+        getDestinationDataUseCase: getIt<GetDestinationDataUseCase>(),
+        getInspirationDataUseCase: getIt<GetInspirationDataUseCase>(),
       ),
     );
 
-    getIt.registerLazySingleton(() => GetHomeDataUseCase(
+    getIt.registerLazySingleton(() => GetDestinationDataUseCase(
           getIt<HomeRepositoryImpl>(),
         ));
     getIt.registerLazySingleton(() => GetInspirationDataUseCase(
@@ -25,10 +26,22 @@ class HomeDepedency {
         ));
 
     getIt.registerLazySingleton(() => HomeRepositoryImpl(
-          getIt<HomeRemoteDatasourceImpl>(),
+          homeRemoteDatasource: getIt<DestinationRemoteDatasource>(),
+          inspirationRemoteDatasource: getIt<InspirationRemoteDatasource>(),
         ));
 
-    getIt.registerLazySingleton(() => HomeRemoteDatasourceImpl(
+    getIt.registerLazySingleton<DestinationRemoteDatasource>(
+      () => DestinationRemoteDatasourceImpl(getIt<ApiHelper>()),
+    );
+
+    getIt.registerLazySingleton<InspirationRemoteDatasource>(
+      () => InspirationRemoteDatasourceImpl(getIt<ApiHelper>()),
+    );
+
+    getIt.registerLazySingleton(() => DestinationRemoteDatasourceImpl(
+          getIt<ApiHelper>(),
+        ));
+    getIt.registerLazySingleton(() => InspirationRemoteDatasourceImpl(
           getIt<ApiHelper>(),
         ));
   }

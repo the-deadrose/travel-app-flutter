@@ -1,7 +1,11 @@
 part of 'home_bloc.dart';
 
-@immutable
-sealed class HomeState {}
+abstract class HomeState extends Equatable {
+  const HomeState();
+
+  @override
+  List<Object> get props => [];
+}
 
 final class HomeInitial extends HomeState {}
 
@@ -9,26 +13,17 @@ final class HomeLoading extends HomeState {}
 
 final class HomeLoaded extends HomeState {
   final DestinationModel destinationModel;
+  final InspirationModel inspirationModel;
 
-  HomeLoaded(this.destinationModel);
+  const HomeLoaded(
+      {required this.inspirationModel, required this.destinationModel});
+
+  @override
+  List<Object> get props => [destinationModel, inspirationModel];
 }
 
 final class HomeError extends HomeState {
   final String message;
 
-  HomeError(this.message);
-}
-
-final class InspirationLoading extends HomeState {}
-
-final class InspirationLoaded extends HomeState {
-  final InspirationModel inspirationModel;
-
-  InspirationLoaded(this.inspirationModel);
-}
-
-final class InspirationError extends HomeState {
-  final String message;
-
-  InspirationError(this.message);
+  const HomeError({required this.message});
 }
