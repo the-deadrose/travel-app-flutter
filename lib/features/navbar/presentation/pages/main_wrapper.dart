@@ -3,6 +3,7 @@ import 'package:travel_app_flutter/features/home/presentation/page/home_page.dar
 import 'package:travel_app_flutter/features/navbar/presentation/widgets/bar.dart';
 import 'package:travel_app_flutter/features/navbar/presentation/widgets/mail.dart';
 import 'package:travel_app_flutter/features/navbar/presentation/widgets/profile.dart';
+import 'package:travel_app_flutter/features/profile/presentation/page/profile.dart';
 import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 
 class MainWrapper extends StatefulWidget {
@@ -19,7 +20,7 @@ class _MainWrapperState extends State<MainWrapper> {
     HomePage(),
     Bar(),
     Mail(),
-    Profile(),
+    ProfilePage(),
   ];
 
   @override
