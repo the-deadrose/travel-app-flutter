@@ -300,7 +300,14 @@ class _DetailsPageState extends State<DetailsPage> {
                                       minWidth: size.width * 0.6,
                                       height: size.height * 0.06,
                                       color: const Color(0xff1A434E),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        // show snackbar in the top
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(const SnackBar(
+                                          content: Text("Booked Successfully"),
+                                          backgroundColor: Colors.green,
+                                        ));
+                                      },
                                       child: const AppText(
                                         text: "Book Trip Now",
                                         size: 16,
